@@ -1,0 +1,152 @@
+/* Normalize */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+/* Fonts */
+
+@font-face {
+	font-family: 'Menlo';
+	src: url('../fonts/Menlo-Regular.woff2') format('woff2'),
+		   url('../fonts/Menlo-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Source Code Pro';
+	src: url('../fonts/SourceCodePro-Regular.woff2') format('woff2'),
+		   url('../fonts/SourceCodePro-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Page */
+
+.page {
+	background-color: rgba(45, 45, 45, 1);
+	font-family: "Source Code Pro", Menlo, fixed-width;
+}
+
+/* Tabs */
+
+.tabs {
+	position: relative;
+	height: 180px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.tabs__item {
+	display: inline-block;
+}
+
+.tabs__link {
+	background-color: #3b444b;
+	border: none;
+	color: white;
+	padding: 14px 22px;
+	text-align: center;
+	font-size: 12px;
+	margin: 4px 2px;
+	opacity: 0.4;
+	transition: 0.4s;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+	font-family: "Source Code Pro", Menlo, fixed-width;
+}
+
+.tabs__link:hover { opacity: 1 }
+
+.tabs__link::before {
+	content: '';
+	position: fixed;
+	background-size: cover;
+	top: 0;
+	left: 0;
+	right:0;
+	bottom: 0;
+	z-index: -2;
+	background-image: url("../img/bg1.gif");
+	opacity: 0;
+	visibility: hidden;
+	transition: all .5s;
+	pointer-events: none;
+}
+
+.tabs__item:nth-of-type(1) .tabs__link::before { background-image: url("../img/bg1.gif") }
+.tabs__item:nth-of-type(2) .tabs__link::before { background-image: url("../img/bg2.gif") }
+.tabs__item:nth-of-type(3) .tabs__link::before { background-image: url("../img/bg3.gif") }
+.tabs__item:nth-of-type(4) .tabs__link::before { background-image: url("../img/bg4.gif") }
+.tabs__item:nth-of-type(5) .tabs__link::before { background-image: url("../img/bg5.gif") }
+
+.tabs__control:checked ~ .tabs__link::before {
+	opacity: .4;
+	visibility: visible;
+}
+
+.tabs__control {
+  position: absolute;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.tabs__control:checked ~ .tabs__link {
+	color: #c26356;
+	opacity: 1;
+}
+
+.tabs__content {
+	padding: .5em 2em;
+	position: absolute;
+	width: 100%;
+	top: 50px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+	transition: all .5s;
+	transform: scale(0);
+}
+
+.tabs__control:checked ~ .tabs__link ~ .tabs__content {
+	opacity: 1;
+	transform: scale(1);
+}
+
+/* Typo */
+
+.title {
+	position: relative;
+	z-index: 1;
+	color: #c26356;
+	font-size: 30px;
+	font-family: Menlo, fixed-width;
+	text-align: center;
+}
+
+.title::selection {
+	color: #fff;
+	background: #c26356;
+}
+
+.text {
+	color: white;
+	text-align: center;
+}
+
+.text::selection {
+	color: #fff;
+	background: #c26356;
+}
